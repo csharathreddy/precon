@@ -30,35 +30,35 @@ paths:
           in: body
           description: Title of the content.
           required: true
-          type: string,
+          type: string
           format: string
           
         - name: type
           in: body
           description: Type of the content - movie, video, tvshow, tvseries.
           required: true
-          type: string,
+          type: string
           format: string
           
         - name: classification
           in: body
           description: Comma seperated list of tags or genere or classification of the content. Like musicvideo, rap, punjabi Or sports, cricket, highlights or biopic, sports 
           required: true
-          type: string,
+          type: string
           format: string 
           
         - name: language
           in: body
           description: Language of the content
           required: false
-          type: string,
+          type: string
           format: string
           
         - name: runningTime
           in: body
           description: Playback time of the content in seconds
           required: false
-          type: integer,
+          type: integer
           format: int32
           
         - name: cast
