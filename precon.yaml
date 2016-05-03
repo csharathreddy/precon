@@ -99,7 +99,7 @@ paths:
           in: body
           description: Synopsis.
           required: false
-          type: string,
+          type: string
           format: string
           
       tags:
@@ -121,9 +121,10 @@ paths:
       parameters:
         - name: name
           in: body
-          description: friendly name of the integrator
+          description: Friendly name of the integrator
           required: true
           type: string
+          format: string
       tags:
         - Integrator
       responses:
