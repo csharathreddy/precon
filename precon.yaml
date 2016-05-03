@@ -14,41 +14,94 @@ schemes:
 basePath: /v1
 produces:
   - application/json
+securityDefinitions:
+  API Key:
+    type: apiKey
+    in: header
+    name: key
 paths:
   /library/content:
     post:
       summary: Content
       description: |
-        The endpoint can be use to update your library with content. 
-        A content can be a movie or a video or a tv show 
+        The endpoint is you for adding content to your library
       parameters:
         - name: title
           in: body
           description: Title of the content.
           required: true
-          type: string
+          type: string,
+          format: string
+          
+        - name: type
+          in: body
+          description: Type of the content - movie, video, tvshow, tvseries.
+          required: true
+          type: string,
+          format: string
+          
+        - name: classification
+          in: body
+          description: Comma seperated list of tags or genere or classification of the content. Like musicvideo, rap, punjabi Or sports, cricket, highlights or biopic, sports 
+          required: true
+          type: string,
+          format: string 
+          
+        - name: language
+          in: body
+          description: Language of the content
+          required: false
+          type: string,
+          format: string
+          
+        - name: runningTime
+          in: body
+          description: Playback time of the content in seconds
+          required: false
+          type: integer,
+          format: int32
+          
+        - name: cast
+          in: body
+          description: Array of cast starring in the content
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          
+        - name: directors
+          in: body
+          description: Array of directors
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          
+        - name: studios
+          in: body
+          description: Array of studios or production houses this content belongs to - Viacom, Disney, AIB, indie
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          
         - name: releasedOn
           in: body
-          description: Released On.
-          required: true
-          type: string
+          description: Date on which the content was released.
+          required: false
+          type: date
           format: date
+          
         - name: synopsis
           in: body
           description: Synopsis.
-          required: true
-          type: string
-        - name: type
-          in: body
-          description: Type of the content(movie, video or tv show).
-          required: true
-          type: string  
-        - name: createdAt
-          in: body
-          description: Content created at.
-          required: true
-          type: string
-          format: date-time
+          required: false
+          type: string,
+          format: string
+          
       tags:
         - Content
       responses:
@@ -59,241 +112,29 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
+            
   /integrator:
     post:
       summary: Integrator details
       description: |
-        This endpoint describes about the content provider.It takes provider details
+        The endpoint is use for adding integrator
       parameters:
-        - name: companyName
+        - name: name
           in: body
-          description: Name of the company for content provider
+          description: friendly name of the integrator
           required: true
           type: string
-        - name: contactName
-          in: body
-          description: Any contact name of content provider
-          required: false
-          type: string
-        - name: owner
-          in: body
-  /users:
-    post:
-      summary: User profile
-      description: |
-        The User data endpoint stores user details.
-      parameters:
-        - name: firstName
-          in: body
-          description: First name of user
-          type: string
-          required: false
-        - name: lastName
-          in: body
-          description: Last name of the user
-          type: string
-          required: false
-        - name: isContentOwner
-          in: body
-          description: Describes whether user is a content owner
-          type: boolean
-          required: true
-        - name: isPlatformOwner
-          in: body
-          description: Describes whether user is a platform owner
-          type: boolean
-          required: true  
-        - name: email
-          in: body
-          description: email Id 
-          required: true
-          type: string
-        - name: password
-          in: body
-          description: Password.
-          required: true
-          type: string
-          format: password
       tags:
-        - User
+        - Integrator
       responses:
         200:
           description: 
-      
+          
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'
-  /me:
-    get:
-      summary: User Profile
-      description: The User Profile endpoint returns information about the user that has authorized with the application.
-      tags:
-        - User
-      responses:
-        200:
-          description: Profile information for a user
-          schema:
-            $ref: '#/definitions/Profile'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
-  /history:
-    get:
-      summary: User Activity
-      description: The User Activity endpoint returns data about a user's lifetime activity with Uber. The response will include pickup locations and times, dropoff locations and times, the distance of past requests, and information about which products were requested.<br><br>The history array in the response will have a maximum length based on the limit parameter. The response value count may exceed limit, therefore subsequent API requests may be necessary.
-      parameters:
-        - name: offset
-          in: query
-          type: integer
-          format: int32
-          description: Offset the list of returned results by this amount. Default is zero.
-        - name: limit
-          in: query
-          type: integer
-          format: int32
-          description: Number of items to retrieve. Default is 5, maximum is 100.
-      tags:
-        - User
-      responses:
-        200:
-          description: History information for the given user
-          schema:
-            $ref: '#/definitions/Activities'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
+            $ref: '#/definitions/Error'    
 definitions:
-  Movie:
-    type: object
-    properties:
-      cast:
-        type: array
-        description: Cast of the movie
-        items:
-          type: string
-      categories:
-        type: array
-        description: Categories of the movie
-        items:
-          type: string
-      directors:
-        type: array
-        description: Director(s) of the movie
-        items:
-          type: string    
-      language:
-        type: string
-        description: Language of the movie
-      durationInSec:
-        type: integer
-        format: int64
-  Video:
-    type: object
-    properties:
-      categories:
-        type: array
-        description: Categories of the movie
-        items:
-          type: string
-      language:
-        type: string
-        description: Language of the movie
-      durationInSec:
-        type: integer
-        format: int64        
-  TvSeries:
-    type: object
-    properties:
-      cast:
-        type: array
-        description: Cast of the movie
-        items:
-          type: string
-      categories:
-        type: array
-        description: Categories of the movie
-        items:
-          type: string
-      directors:
-        type: array
-        description: Director(s) of the movie
-        items:
-          type: string    
-      language:
-        type: string
-        description: Language of the movie
-      durationInSec:
-        type: integer
-        format: int64
-  TvEpisode:
-    type: object
-    properties:
-      durationInSec:
-        type: integer
-        format: int64
-      tvSeries:
-        $ref: '#/definitions/TvSeries'
-  User:
-    type: object
-    properties:
-      userName:
-        type: string
-        format: email
-      password:
-        type: string
-        format: password
-      firstName:
-        type: string
-      isContentOwner:
-        type: boolean
-      isPlatformPartner:
-        type: boolean
-  Profile:
-    type: object
-    properties:
-      first_name:
-        type: string
-        description: First name of the Uber user.
-      last_name:
-        type: string
-        description: Last name of the Uber user.
-      email:
-        type: string
-        description: Email address of the Uber user
-      picture:
-        type: string
-        description: Image URL of the Uber user.
-      promo_code:
-        type: string
-        description: Promo code of the Uber user.
-  Activity:
-    type: object
-    properties:
-      uuid:
-        type: string
-        description: Unique identifier for the activity
-  Activities:
-    type: object
-    properties:
-      offset:
-        type: integer
-        format: int32
-        description: Position in pagination.
-      limit:
-        type: integer
-        format: int32
-        description: Number of items to retrieve (100 max).
-      count:
-        type: integer
-        format: int32
-        description: Total number of items available.
-      history:
-        type: array
-        items:
-          $ref: '#/definitions/Activity'
   Error:
     type: object
     properties:
