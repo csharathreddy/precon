@@ -106,7 +106,7 @@ paths:
         - Content
       responses:
         200:
-          description: 
+          description: Content successfully created in your library
           
         default:
           description: Unexpected error
@@ -128,13 +128,24 @@ paths:
         - Integrator
       responses:
         200:
-          description: 
+          description: Integrator created
+          schema:
+            $ref: '#/definitions/IntegratorRegistration' 
           
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'    
 definitions:
+  IntegratorRegistration:
+    type: object
+    properties:
+      id:
+        type: string
+        format: string
+      apiKey:
+        type: string
+        format: string
   Error:
     type: object
     properties:
