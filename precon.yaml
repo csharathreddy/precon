@@ -119,7 +119,7 @@ paths:
       description: |
         The endpoint is use for adding integrator
       parameters:
-        - name: name
+        - name: nam
           in: body
           description: friendly name of the integrator
           required: true
