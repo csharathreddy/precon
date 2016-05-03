@@ -1,0 +1,152 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "Precon API",
+    "description" : "Move your app forward with the Precon API",
+    "version" : "1.0.0"
+  },
+  "host" : "api.precon.io",
+  "schemes" : [ "https" ],
+  "basePath" : "/v1",
+  "produces" : [ "application/json" ],
+  "securityDefinitions" : {
+    "API Key" : {
+      "type" : "apiKey",
+      "in" : "header",
+      "name" : "key"
+    }
+  },
+  "paths" : {
+    "/library/content" : {
+      "post" : {
+        "summary" : "Content",
+        "description" : "The endpoint is you for adding content to your library\n",
+        "parameters" : [ {
+          "name" : "title",
+          "in" : "body",
+          "description" : "Title of the content.",
+          "required" : true,
+          "type" : "string,",
+          "format" : "string"
+        }, {
+          "name" : "type",
+          "in" : "body",
+          "description" : "Type of the content - movie, video, tvshow, tvseries.",
+          "required" : true,
+          "type" : "string,",
+          "format" : "string"
+        }, {
+          "name" : "classification",
+          "in" : "body",
+          "description" : "Comma seperated list of tags or genere or classification of the content. Like musicvideo, rap, punjabi Or sports, cricket, highlights or biopic, sports",
+          "required" : true,
+          "type" : "string,",
+          "format" : "string"
+        }, {
+          "name" : "language",
+          "in" : "body",
+          "description" : "Language of the content",
+          "required" : false,
+          "type" : "string,",
+          "format" : "string"
+        }, {
+          "name" : "runningTime",
+          "in" : "body",
+          "description" : "Playback time of the content in seconds",
+          "required" : false,
+          "type" : "integer,",
+          "format" : "int32"
+        }, {
+          "name" : "cast",
+          "in" : "body",
+          "description" : "Comma seperated list of cast starring in the content",
+          "required" : false,
+          "type" : "string,",
+          "format" : "string"
+        }, {
+          "name" : "directors",
+          "in" : "body",
+          "description" : "Comma seperated list of directors of the content",
+          "required" : false,
+          "type" : "string,",
+          "format" : "string"
+        }, {
+          "name" : "studio",
+          "in" : "body",
+          "description" : "Studio or production house of the content - Viacom, Disney, AIB, indie",
+          "required" : false,
+          "type" : "string,",
+          "format" : "string"
+        }, {
+          "name" : "releasedOn",
+          "in" : "body",
+          "description" : "Date on which the content was released.",
+          "required" : false,
+          "type" : "date",
+          "format" : "date"
+        }, {
+          "name" : "synopsis",
+          "in" : "body",
+          "description" : "Synopsis.",
+          "required" : false,
+          "type" : "string,",
+          "format" : "string"
+        } ],
+        "tags" : [ "Content" ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/integrator" : {
+      "post" : {
+        "summary" : "Integrator details",
+        "description" : "The endpoint is use for adding integrator\n",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "body",
+          "description" : "friendly name of the integrator",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "tags" : [ "Integrator" ],
+        "responses" : {
+          "200" : {
+            "description" : ""
+          },
+          "default" : {
+            "description" : "Unexpected error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Error" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "fields" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
