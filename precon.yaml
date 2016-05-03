@@ -147,6 +147,43 @@ definitions:
       apiKey:
         type: string
         format: string
+  Content:
+    type: object
+    properties:
+      title:
+        type: string
+        format: string
+      type:
+        type: string
+        format: string
+      classification:
+        type: string
+        format: string
+      language:
+        type: string
+        format: string
+      runningTime:
+        type: integer
+        format: int32
+      cast:
+        type: array
+        items:
+          type: string
+      directors:
+        type: array
+        items:
+          type: string
+      studios:
+        type: array
+        items:
+          type: string
+      releasedOn:
+        type: string
+        format: date
+      synopsis:
+        type: string
+        format: string
+        
   Error:
     type: object
     properties:
