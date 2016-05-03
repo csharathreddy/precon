@@ -14,16 +14,16 @@ schemes:
 basePath: /v1
 produces:
   - application/json
-securityDefinitions:
-  API Key:
-    type: apiKey
-    in: header
-    name: key
+
 paths:
   /library/content:
     post:
       summary: Content
-      description:  The endpoint is you for adding content to your library
+      description:  The endpoint is you for adding content to your library.
+      consumes:
+        - application/json
+      produces:
+        - application/json
       parameters:
         - name: content 
           in: body
@@ -31,7 +31,12 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/Content'
-          
+        - name: apiKey 
+          in: header
+          description: API key of the integrator.
+          required: true
+          type: string
+          format: string
       tags:
         - Content
       responses:
@@ -79,38 +84,50 @@ definitions:
         
   Content:
     type: object
+    required:
+      - title
+      - type
+      - classification
     properties:
       title:
+        description: Title of the content.
         type: string
         format: string
       type:
+        description: Type of the content - movie, video, tvshow, tvseries.
         type: string
         format: string
       classification:
+        description: Comma seperated list of tags or genere or classification of the content. Like music, video, rap, punjabi Or sports, cricket, highlights or biopic, sports 
         type: string
         format: string
       language:
+        description: Language of the content.
         type: string
         format: string
       runningTime:
+        description: Playback time of the content in seconds.
         type: integer
         format: int32
       cast:
-        type: array
-        items:
-          type: string
+        description: Comma separated list of cast starring in the content.
+        type: string
+        format: string
       directors:
-        type: array
-        items:
-          type: string
+        description: Comma separated list of directors.
+        type: string
+        format: string
       studios:
+        description: Comma separated list of studios.
         type: array
         items:
           type: string
       releasedOn:
+        description: Date on which the content was released.
         type: string
         format: date
       synopsis:
+        description: Synopsis of the content.
         type: string
         format: string
         
