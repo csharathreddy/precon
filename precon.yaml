@@ -25,83 +25,12 @@ paths:
       summary: Content
       description:  The endpoint is you for adding content to your library
       parameters:
-        - name: title
+        - name: content 
           in: body
-          description: Title of the content.
+          description: Content Object
           required: true
           schema:
-            type: string
-          
-        - name: type
-          in: body
-          description: Type of the content - movie, video, tvshow, tvseries.
-          required: true
-          schema:
-            type: string
-          
-        - name: classification
-          in: body
-          description: Comma seperated list of tags or genere or classification of the content. Like musicvideo, rap, punjabi Or sports, cricket, highlights or biopic, sports 
-          required: true
-          schema:
-            type: string
-          
-        - name: language
-          in: body
-          description: Language of the content
-          required: false
-          schema:
-            type: string
-          
-        - name: runningTime
-          in: body
-          description: Playback time of the content in seconds
-          required: false
-          schema:
-            type: integer
-            format: int32
-          
-        - name: cast
-          in: body
-          description: Array of cast starring in the content
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          
-        - name: directors
-          in: body
-          description: Array of directors
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          
-        - name: studios
-          in: body
-          description: Array of studios or production houses this content belongs to - Viacom, Disney, AIB, indie
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          
-        - name: releasedOn
-          in: body
-          description: Date on which the content was released.
-          required: false
-          schema:
-            type: string
-            format: date
-          
-        - name: synopsis
-          in: body
-          description: Synopsis.
-          required: false
-          schema:
-            type: string
+            $ref: '#/definitions/Content'
           
       tags:
         - Content
@@ -147,6 +76,7 @@ definitions:
       apiKey:
         type: string
         format: string
+        
   Content:
     type: object
     properties:
