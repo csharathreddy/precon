@@ -23,43 +23,43 @@ paths:
   /library/content:
     post:
       summary: Content
-      description: |
-        The endpoint is you for adding content to your library
+      description:  The endpoint is you for adding content to your library
       parameters:
         - name: title
           in: body
           description: Title of the content.
           required: true
-          type: string
-          format: string
+          schema:
+            type: string
           
         - name: type
           in: body
           description: Type of the content - movie, video, tvshow, tvseries.
           required: true
-          type: string
-          format: string
+          schema:
+            type: string
           
         - name: classification
           in: body
           description: Comma seperated list of tags or genere or classification of the content. Like musicvideo, rap, punjabi Or sports, cricket, highlights or biopic, sports 
           required: true
-          type: string
-          format: string 
+          schema:
+            type: string
           
         - name: language
           in: body
           description: Language of the content
           required: false
-          type: string
-          format: string
+          schema:
+            type: string
           
         - name: runningTime
           in: body
           description: Playback time of the content in seconds
           required: false
-          type: integer
-          format: int32
+          schema:
+            type: integer
+            format: int32
           
         - name: cast
           in: body
@@ -92,15 +92,16 @@ paths:
           in: body
           description: Date on which the content was released.
           required: false
-          type: date
-          format: date
+          schema:
+            type: string
+            format: date
           
         - name: synopsis
           in: body
           description: Synopsis.
           required: false
-          type: string
-          format: string
+          schema:
+            type: string
           
       tags:
         - Content
@@ -116,15 +117,14 @@ paths:
   /integrator:
     post:
       summary: Integrator details
-      description: |
-        The endpoint is use for adding integrator
+      description: The endpoint is use for adding integrator
       parameters:
         - name: name
           in: body
           description: Friendly name of the integrator
           required: true
-          type: string
-          format: string
+          schema:
+            type: string
       tags:
         - Integrator
       responses:
