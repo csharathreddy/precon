@@ -48,7 +48,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
             
-  /integrator:
+  /integration:
     post:
       summary: Integrator details
       description: The endpoint is use for adding integrator
