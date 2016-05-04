@@ -3,7 +3,7 @@
 swagger: '2.0'
 info:
   title: Precon API
-  description: Move your app forward with the Precon API
+  description: Add advance personalization and recommendation engine to your app
   version: "1.0.0"
 # the domain of the service
 host: api.precon.io
