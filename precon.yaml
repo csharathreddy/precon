@@ -14,7 +14,8 @@ schemes:
 basePath: /v1
 produces:
   - application/json
-
+security:
+  - apiKey: []
 paths:
   /library/content:
     post:
@@ -31,12 +32,6 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/Content'
-        - name: apiKey 
-          in: header
-          description: API key of the integrator
-          required: true
-          type: string
-          format: string
       tags:
         - Content
       responses:
@@ -63,12 +58,6 @@ paths:
           required: true
           schema:
             $ref: '#/definitions/BulkContent'
-        - name: apiKey 
-          in: header
-          description: API key of the integrator.
-          required: true
-          type: string
-          format: string
       tags:
         - Content
       responses:
@@ -83,7 +72,7 @@ paths:
   /integration:
     post:
       summary: Add integration
-      description: The endpoint is use for adding integrations
+      description: The endpoint is used for adding integrations
       parameters:
         - name: name
           in: body
@@ -103,6 +92,12 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'    
+securityDefinitions:
+  apiKey:
+    type: apiKey
+    in: header
+    name: api_key
+    description: apiKey is used for authentication purpose. 
 definitions:
   IntegrationRegistration:
     type: object
