@@ -15,7 +15,7 @@ basePath: /v1
 produces:
   - application/json
 security:
-  - api_key: []
+  - x-apiKey: []
 paths:
   /library/content:
     post:
@@ -93,11 +93,11 @@ paths:
           schema:
             $ref: '#/definitions/Error'    
 securityDefinitions:
-  api_key:
+  x-apiKey:
     type: apiKey
     in: header
-    name: api_key
-    description: api_key is used for authentication purpose. 
+    name: x-apiKey
+    description: api key of the integration
 definitions:
   IntegrationRegistration:
     type: object
