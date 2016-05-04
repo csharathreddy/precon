@@ -18,8 +18,8 @@ produces:
 paths:
   /library/content:
     post:
-      summary: Content
-      description:  The endpoint is you for adding content to your library.
+      summary: Add Content
+      description: Use this endpoint to add content
       consumes:
         - application/json
       produces:
@@ -33,7 +33,7 @@ paths:
             $ref: '#/definitions/Content'
         - name: apiKey 
           in: header
-          description: API key of the integrator.
+          description: API key of the integrator
           required: true
           type: string
           format: string
@@ -41,7 +41,7 @@ paths:
         - Content
       responses:
         200:
-          description: Content successfully created in your library
+          description: Content successfully added
           
         default:
           description: Unexpected error
@@ -50,8 +50,8 @@ paths:
             
   /library/content/bulk:
     post:
-      summary: Content
-      description: The endpoint is used for adding bulk content to your library.
+      summary: Add Content in bulk
+      description: Use this endpoint to bulk upload your content library
       consumes:
         - application/json
       produces:
@@ -73,7 +73,7 @@ paths:
         - Content
       responses:
         200:
-          description: Content successfully created in your library.
+          description: Content successfully added 
           
         default:
           description: Unexpected error
@@ -82,20 +82,20 @@ paths:
             
   /integration:
     post:
-      summary: Manage Integrations
+      summary: Add integration
       description: The endpoint is use for adding integrations
       parameters:
         - name: name
           in: body
-          description: Friendly name of the integration
+          description: Friendly name for the integration
           required: true
           schema:
             type: string
       tags:
-        - Integrator
+        - Integration
       responses:
         200:
-          description: Integration activated
+          description: Integration added
           schema:
             $ref: '#/definitions/IntegrationRegistration' 
           
