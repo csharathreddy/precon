@@ -48,6 +48,38 @@ paths:
           schema:
             $ref: '#/definitions/Error'
             
+  /library/content/bulk:
+    post:
+      summary: Content
+      description: The endpoint is used for adding bulk content to your library.
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: content 
+          in: body
+          description: Content Object
+          required: true
+          schema:
+            $ref: '#/definitions/BulkContent'
+        - name: apiKey 
+          in: header
+          description: API key of the integrator.
+          required: true
+          type: string
+          format: string
+      tags:
+        - Content
+      responses:
+        200:
+          description: Content successfully created in your library.
+          
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'           
+            
   /integration:
     post:
       summary: Integrator details
@@ -129,6 +161,13 @@ definitions:
         description: Synopsis of the content.
         type: string
         format: string
+  
+  BulkContent:
+    type: object
+    properties:
+      content:
+        type: object
+        format: object
         
   Error:
     type: object
