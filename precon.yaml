@@ -59,7 +59,7 @@ paths:
       parameters:
         - name: content 
           in: body
-          description: Content Object
+          description: json containing the entire content library
           required: true
           schema:
             $ref: '#/definitions/BulkContent'
@@ -82,12 +82,12 @@ paths:
             
   /integration:
     post:
-      summary: Integrator details
-      description: The endpoint is use for adding integrator
+      summary: Manage Integrations
+      description: The endpoint is use for adding integrations
       parameters:
         - name: name
           in: body
-          description: Friendly name of the integrator
+          description: Friendly name of the integration
           required: true
           schema:
             type: string
@@ -95,16 +95,16 @@ paths:
         - Integrator
       responses:
         200:
-          description: Integrator created
+          description: Integration activated
           schema:
-            $ref: '#/definitions/IntegratorRegistration' 
+            $ref: '#/definitions/IntegrationRegistration' 
           
         default:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'    
 definitions:
-  IntegratorRegistration:
+  IntegrationRegistration:
     type: object
     properties:
       id:
