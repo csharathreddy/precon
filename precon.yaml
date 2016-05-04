@@ -119,9 +119,8 @@ definitions:
         format: string
       studios:
         description: Comma separated list of studios.
-        type: array
-        items:
-          type: string
+        type: string
+        format: string
       releasedOn:
         description: Date on which the content was released.
         type: string
