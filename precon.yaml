@@ -136,7 +136,7 @@ definitions:
         description: Language of the content.
         type: string
         format: string
-      runningTime:
+      runningTimeInSecs:
         description: Playback time of the content in seconds.
         type: integer
         format: int32
