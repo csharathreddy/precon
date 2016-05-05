@@ -11,7 +11,6 @@ host: api.precon.io
 schemes:
   - https
 # will be prefixed to all paths
-basePath: /v1
 produces:
   - application/json
 security:
