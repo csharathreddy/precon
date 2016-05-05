@@ -43,7 +43,7 @@ paths:
           schema:
             $ref: '#/definitions/Error'
             
-  /library/content/bulk:
+  /content/bulk:
     post:
       summary: Add Content in bulk
       description: Use this endpoint to bulk upload your content library
