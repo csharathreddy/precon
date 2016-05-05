@@ -17,7 +17,7 @@ produces:
 security:
   - x-apiKey: []
 paths:
-  /library/content:
+  /content:
     post:
       summary: Add Content
       description: Use this endpoint to add content
