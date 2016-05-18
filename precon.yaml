@@ -226,6 +226,10 @@ definitions:
         description: Synopsis of the content.
         type: string
         format: string
+      keywords:
+        description: keywords related to content.
+        type: string
+        format: string
   
   BulkContent:
     type: object
