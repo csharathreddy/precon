@@ -181,6 +181,7 @@ definitions:
       - title
       - type
       - classification
+      - sourceId
     properties:
       title:
         description: Title of the content.
@@ -194,8 +195,12 @@ definitions:
         description: Comma seperated list of tags or genere or classification of the content. Like music, video, rap, punjabi Or sports, cricket, highlights or biopic, sports 
         type: string
         format: string
-      integrationId:
+      sourceId:
         description: Unique id of the content as per the integration system.
+        type: string
+        format: string  
+      integrationId:
+        description: Unique id of the integrator as per the integration system.
         type: string
         format: string
       language:
