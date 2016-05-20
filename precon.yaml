@@ -185,6 +185,7 @@ definitions:
     properties:
       title:
         description: Title of the content.
+        enum: ['sharath', 'reddy']
         type: string
         format: string
       type:
