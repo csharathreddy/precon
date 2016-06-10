@@ -135,28 +135,6 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-  
-  /consumption:
-    post:
-      summary: Capture consumption time. 
-      description: The endpoint is used for capturing consumption time.
-      parameters:
-        - name: consumption 
-          in: body
-          description: User's content consumption object
-          required: true
-          schema:
-            $ref: '#/definitions/Consumption'
-      tags:
-        - User      
-      responses:
-        200:
-          description: content consumption successfully recorded.
-          
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'          
     
 securityDefinitions:
   x-apiKey:
@@ -293,28 +271,6 @@ definitions:
         description: source id of the content.
         type: string
         format: string
-        
-  Consumption:
-    type: object
-    required:
-      - email
-      - contentSourceId
-      - runningTimeInSec
-    properties:
-      email:
-        description: email id of the user.
-        type: string
-        format: email
-      
-      contentSourceId:
-        description: source id of the content.
-        type: string
-        format: string 
-      
-      runningTimeInSec:
-        description: consumption time of a content in seconds.
-        type: integer
-        format: int32
         
   Error:
     type: object
